@@ -2,7 +2,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   before_action :ensure_params_exist, only: :create
   prepend_before_action :require_no_authentication, only: [:create]
   before_action :set_host_for_local_storage
-  #skip_before_filter :verify_authenticity_token, :only => :create
+
   # sign up
   def create
     user = User.new(user_params)
