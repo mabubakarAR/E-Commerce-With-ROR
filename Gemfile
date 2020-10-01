@@ -30,6 +30,8 @@ gem 'jwt'
 
 gem 'enumerize'
 
+gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

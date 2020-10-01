@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :products
+
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :name, presence: true
@@ -36,7 +38,7 @@ class User < ApplicationRecord
       #if self.is_approved
       #  true
       #else
-      #  self.errors[:base] << "user is not approved"
+      #  self.errors[:base] << "product is not approved"
       #end
     else
       self.errors[:base] << "User is not a seller"
@@ -47,9 +49,9 @@ class User < ApplicationRecord
   def check_role(role)
     if role.present?
       if role == "buyer"
-        self.influencer?
+        self.buyer?
       elsif role == "seller"
-        self.brand?
+        self.seller?
       elsif role == "admin"
         self.admin?
       else
