@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         post "sign_in", to: "sessions#create"
       end
       resources :products
+      resources :carts
     end
   end
 end
