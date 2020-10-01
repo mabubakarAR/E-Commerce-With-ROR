@@ -5,7 +5,7 @@ class Api::V1::SessionsController < Devise::SessionsController
 
   def create
     @user = User.find_by(email: params[:user][:email].downcase)
-    if @user.present? && @user.valid_password?(params[:user][:password])
+    if @user.present? && @user.valid_password?(params[:user][:password]) && @user.check_role(params[:user][:role])
        render json: {
          is_success: true,
          error_code: nil,
@@ -32,7 +32,7 @@ class Api::V1::SessionsController < Devise::SessionsController
   private
 
   def sign_in_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:role, :email, :password)
   end
 
   def set_host_for_local_storage

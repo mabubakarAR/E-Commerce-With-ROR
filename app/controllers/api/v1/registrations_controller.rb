@@ -5,12 +5,12 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   #skip_before_filter :verify_authenticity_token, :only => :create
   # sign up
   def create
-    user = User.new user_params
+    user = User.new(user_params)
     if user.save
       render json: {
           is_success: true,
           error_code: 200,
-          message: user.errors.full_messages.first,
+          message: "User Signed Up Successfully",
           result: user
       }, status: :ok
     else
@@ -25,7 +25,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
 
   private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :role, :email, :password, :password_confirmation, :address, :phone)
   end
 
   def ensure_params_exist
