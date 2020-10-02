@@ -1,24 +1,33 @@
-# README
+# Prerequisites
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Github
 
-Things you may want to cover:
+* Ruby 2.5.7
 
-* Ruby version
+* Rails 6.0.3
 
-* System dependencies
+* Check out the repository
 
-* Configuration
+# Installation
 
-* Database creation
+Follow these easy steps to install and start the app:
 
-* Database initialization
+* bundle install
 
-* How to run the test suite
+* rake db:create
 
-* Services (job queues, cache servers, search engines, etc.)
+* rake db:setup
 
-* Deployment instructions
+* rails db:migrate
 
-* ...
+Now, Create testing user in rails console, Open console
+
+* rails c
+
+Create user by adding this command
+
+* User.create(name: "Testing user", role: "admin, email: "testing.user@gmail.com", password: "Password", password_confirmation: "Password")
+
+# Start the app
+
+* rails s
