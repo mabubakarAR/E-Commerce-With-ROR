@@ -5,14 +5,14 @@ class Api::V1::ProductsController < Api::V1::BaseController
   # GET /products.json
   def index
      @products = Product.all
-     render json: {is_success: true, error_code: 200, message: "Products Found Successfully", result: @products}, status: 400
+     render json: {is_success: true, error_code: 200, message: "Products Found Successfully", result: @products}, status: 200
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
     if @product.present?
-      render json: {is_success: true, error_code: 200, message: "Found Successfully", result: @product}, status: 400
+      render json: {is_success: true, error_code: 200, message: "Found Successfully", result: @product}, status: 200
     end
   end
 
@@ -66,6 +66,6 @@ class Api::V1::ProductsController < Api::V1::BaseController
   # Never trust parameters from the scary internet,
   # only allow the white list through.
   def product_params
-    params.require(:product).permit(:user_id, :name, :description, :price) #pictures: []
+    params.require(:product).permit(:user_id, :name, :description, :price, :is_favourite, :is_approved) #pictures: []
   end
 end

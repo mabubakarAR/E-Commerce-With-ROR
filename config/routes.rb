@@ -10,6 +10,15 @@ Rails.application.routes.draw do
       end
       resources :products
       resources :carts
+      resources :users do
+        member do
+          get :favourite_products
+        end
+        collection do
+          put 'users/:id/mark_as_favourite/:product_id', to: 'users#mark_as_favourite'
+        end
+      end
+
     end
   end
 end
